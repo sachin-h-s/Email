@@ -33,11 +33,21 @@ def write_email():
 #     message = generate_text(prompt)
 #     st.write("Generated Email:")
 #     st.write(message)
-    subject = st.text_input("Please enter email subject:", "")
-    prompt = (f"Write a email with the subject: {subject}")
-    message = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=2048, n =1,stop=None,temperature=0.5)
-    st.write("Email Message:")
-    st.write(message.choices[0].text)
+#     subject = st.text_input("Please enter email subject:", "")
+#     prompt = (f"Write a email with the subject: {subject}")
+#     message = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=2048, n =1,stop=None,temperature=0.5)
+#     st.write("Email Message:")
+#     st.write(message.choices[0].text)
+    api_key = st.text_input("Please enter OpenAI API key", "")
+    openai.api_key = api_key
+    if openai.api_key:
+        subject = st.text_input("Please enter email subject:", "")
+        prompt = (f"Write a email with the subject: {subject}")
+        message = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=2048, n =1,stop=None,temperature=0.5)
+        st.write("Email Message:")
+        st.write(message.choices[0].text)
+    else:
+        st.warning("API key is missing")
     
 if __name__=="__main__":
     st.title("Email Writer using GPT-3")
