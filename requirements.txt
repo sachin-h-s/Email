@@ -1,4 +1,4 @@
 pip
 streamlit
 openai
-openai_secret_manager
+
