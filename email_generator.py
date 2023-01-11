@@ -20,6 +20,9 @@ def generate_text(prompt):
     return message.strip()
 
 def write_email():
+    api_key = st.text_input("Please enter OpenAI API key", "")
+    openai.api_key = api_key
+
     reason = st.selectbox("Select the reason for the email", ["Job Application", "Business Proposal", "Complaint", "Inquiry"])
     recipient = st.text_input("Recipient's Email Address:")
     st.write("Please provide more details about the email")
